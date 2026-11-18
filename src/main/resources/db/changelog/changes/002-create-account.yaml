@@ -1,0 +1,46 @@
+databaseChangeLog:
+  - changeSet:
+      id: 003-create-account
+      author: ms-account-reservation
+      changes:
+        - createTable:
+            tableName: account
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: status_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: client_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: account_type
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: currency_code
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: account
+            baseColumnNames: status_id
+            constraintName: fk_account_status
+            referencedTableName: account_status
+            referencedColumnNames: id
+        - addForeignKeyConstraint:
+            baseTableName: account
+            baseColumnNames: client_id
+            constraintName: fk_account_client
+            referencedTableName: client
+            referencedColumnNames: id

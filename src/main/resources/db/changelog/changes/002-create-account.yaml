@@ -2,6 +2,11 @@ databaseChangeLog:
   - changeSet:
       id: 003-create-account
       author: ms-account-reservation
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            - tableExists:
+                tableName: account
       changes:
         - createTable:
             tableName: account
@@ -38,6 +43,38 @@ databaseChangeLog:
             constraintName: fk_account_status
             referencedTableName: account_status
             referencedColumnNames: id
+        - addForeignKeyConstraint:
+            baseTableName: account
+            baseColumnNames: client_id
+            constraintName: fk_account_client
+            referencedTableName: client
+            referencedColumnNames: id
+  - changeSet:
+      id: 004-add-fk-account-status
+      author: ms-account-reservation
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            - foreignKeyConstraintExists:
+                foreignKeyName: fk_account_status
+                foreignKeyTableName: account
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: account
+            baseColumnNames: status_id
+            constraintName: fk_account_status
+            referencedTableName: account_status
+            referencedColumnNames: id
+  - changeSet:
+      id: 005-add-fk-account-client
+      author: ms-account-reservation
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            - foreignKeyConstraintExists:
+                foreignKeyName: fk_account_client
+                foreignKeyTableName: account
+      changes:
         - addForeignKeyConstraint:
             baseTableName: account
             baseColumnNames: client_id

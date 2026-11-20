@@ -2,6 +2,11 @@ databaseChangeLog:
   - changeSet:
       id: 001-create-account-status
       author: ms-account-reservation
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            - tableExists:
+                tableName: account_status
       changes:
         - createTable:
             tableName: account_status
@@ -27,6 +32,11 @@ databaseChangeLog:
   - changeSet:
       id: 002-create-client
       author: ms-account-reservation
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            - tableExists:
+                tableName: client
       changes:
         - createTable:
             tableName: client

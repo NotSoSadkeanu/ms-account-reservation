@@ -1,0 +1,16 @@
+databaseChangeLog:
+  - include:
+      file: changes/001-create-client-and-account-status.yaml
+      relativeToChangelogFile: true
+
+  - include:
+      file: changes/002-create-account.yaml
+      relativeToChangelogFile: true
+
+  - include:
+      file: changes/003-seed-account-statuses.yaml
+      relativeToChangelogFile: true
+
+  - include:
+      file: changes/004-add-audit-columns.yaml
+      relativeToChangelogFile: true

@@ -1,0 +1,119 @@
+databaseChangeLog:
+  - changeSet:
+      id: 005-add-created-at-account-status
+      author: ms-account-reservation
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            - columnExists:
+                tableName: account_status
+                columnName: created_at
+      changes:
+        - addColumn:
+            tableName: account_status
+            columns:
+              - column:
+                  name: created_at
+                  type: TIMESTAMP WITH TIME ZONE
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+  - changeSet:
+      id: 006-add-updated-at-account-status
+      author: ms-account-reservation
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            - columnExists:
+                tableName: account_status
+                columnName: updated_at
+      changes:
+        - addColumn:
+            tableName: account_status
+            columns:
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP WITH TIME ZONE
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+
+  - changeSet:
+      id: 007-add-created-at-client
+      author: ms-account-reservation
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            - columnExists:
+                tableName: client
+                columnName: created_at
+      changes:
+        - addColumn:
+            tableName: client
+            columns:
+              - column:
+                  name: created_at
+                  type: TIMESTAMP WITH TIME ZONE
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+
+  - changeSet:
+      id: 008-add-updated-at-client
+      author: ms-account-reservation
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            - columnExists:
+                tableName: client
+                columnName: updated_at
+      changes:
+        - addColumn:
+            tableName: client
+            columns:
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP WITH TIME ZONE
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+
+  - changeSet:
+      id: 009-add-created-at-account
+      author: ms-account-reservation
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            - columnExists:
+                tableName: account
+                columnName: created_at
+      changes:
+        - addColumn:
+            tableName: account
+            columns:
+              - column:
+                  name: created_at
+                  type: TIMESTAMP WITH TIME ZONE
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
+
+  - changeSet:
+      id: 010-add-updated-at-account
+      author: ms-account-reservation
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            - columnExists:
+                tableName: account
+                columnName: updated_at
+      changes:
+        - addColumn:
+            tableName: account
+            columns:
+              - column:
+                  name: updated_at
+                  type: TIMESTAMP WITH TIME ZONE
+                  constraints:
+                    nullable: false
+                  defaultValueComputed: CURRENT_TIMESTAMP
